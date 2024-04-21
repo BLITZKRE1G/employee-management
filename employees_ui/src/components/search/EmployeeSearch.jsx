@@ -17,23 +17,36 @@ const EmployeeSearch = (setEmployees) => {
             .finally(console.log('Searched'))
     }
     return (
-        <>
-            <form action="" method="get">
-                <div>
-                    <label htmlFor="employee-id">Employee ID</label>
+        <div style={{ marginTop: '10px' }}>
+            <form action="" method="get" style={{ display: 'flex' }}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    marginRight: '5px'
+                }}>
+                    <label htmlFor="employee-id" style={{ marginBottom: '5px' }}>Employee ID</label>
                     <input type="number" name="employee-id" id="employee_id" />
                 </div>
-                <div>
-                    <label htmlFor="employee-name">Employee Name</label>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    paddingLeft: '10px',
+                    paddingRight: '10px',
+                    alignItems: 'flex-start'
+                }}>
+                    <label htmlFor="employee-name" style={{ marginBottom: '5px' }}>Employee Name</label>
                     <input type="text" name="employee-name" id="employee_name" />
                 </div>
                 <button type='submit'
+                    className='btn btn-info'
+                    style={{ paddingLeft: '15px', paddingRight: '15px', color: 'white', marginLeft: '10px' }}
                     onClick={(event) => {
                         searchEmployee(event);
                     }}
                 >Search Employee</button>
             </form>
-        </>
+        </div>
     )
 }
 
