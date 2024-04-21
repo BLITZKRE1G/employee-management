@@ -65,7 +65,13 @@ const EmployeesTable = ({ isEmployee }) => {
                 subHeaderComponent={
                     <>
                         <div>{isEmployee ? <EmployeeSearch /> : <SearchHr />}</div>
-                        <button className='btn btn-sm btn-info'>+ Add Employee</button>
+                        <button className='btn btn-md btn-info' style={{
+                            marginLeft: '630px',
+                            marginRight: '10px',
+                            color: 'white',
+                            padding: '20px 30px',
+                            fontSize: 'large'
+                        }}>+ Add Employee</button>
                     </>
                 }
                 subHeaderAlign='right'

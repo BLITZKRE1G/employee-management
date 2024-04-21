@@ -18,8 +18,8 @@ const Navbar = () => {
             >Employees Management</h1>
             <div style={{ marginTop: '30px' }}>
                 <nav className='navbar bg-light' style={{ maxWidth: '200px', marginLeft: '20px' }}>
-                    <a href="#" onClick={() => setIsEmployee(true)}>Employee</a>
-                    <a href="#" onClick={() => setIsEmployee(false)}>HR</a>
+                    <a href="#" style={{ fontSize: 'larger' }} onClick={() => setIsEmployee(true)}>Employee</a>
+                    <a href="#" style={{ fontSize: 'larger' }} onClick={() => setIsEmployee(false)}>HR</a>
                 </nav>
             </div>
             <EmployeesTable isEmployee={isEmployee} />
