@@ -1,30 +1,83 @@
-import React from 'react'
-import EmployeesTable from './EmployeesTable'
-import { useState } from 'react'
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import DataTable from 'react-data-table-component';
+import EmployeeSearch from './search/EmployeeSearch';
+import SearchHr from './search/HrSearch';
 
-const Navbar = () => {
+const EmployeesTable = ({ isEmployee }) => {
 
-    const [isEmployee, setIsEmployee] = useState(true);
+    const [employees, setEmployees] = useState([]);
+    const fetchEmployeesData = async () => {
+
+        axios.get('http://localhost:1080/employees/all-employees')
+            .then(response => {
+
+                console.log('Response Data:', response.data);
+                setEmployees(response.data);
+            }).catch(error => {
+                console.log(error);
+            }).finally(() => console.log('Fetched the Records'));
+    };
+
+    useEffect(() => {
+        fetchEmployeesData();
+    }, []);
+
+    const tableColumns = [
+        {
+            name: 'Employee ID',
+            selector: row => row.id,
+            sortable: true
+        }, {
+            name: 'Employee Name',
+            selector: row => row.name
+        }, {
+            name: 'Email ID',
+            selector: row => row.email
+        }, {
+            name: 'Contact Number',
+            selector: row => row.phone
+        }, {
+            name: 'Address',
+            selector: row => row.address
+        }, {
+            name: 'Designation',
+            selector: row => row.position
+        }, {
+            name: 'Department',
+            selector: row => row.department
+        }
+    ]
 
     return (
-        <div style={{ marginLeft: '20px' }}>
-            <h1
-                style={{
-                    textAlign: 'left',
-                    color: "rgb(44, 184, 219)",
-                    marginTop: "50px",
-                    marginLeft: '5px'
-                }}
-            >Employees Management</h1>
-            <div style={{ marginTop: '30px' }}>
-                <nav className='navbar bg-light' style={{ maxWidth: '200px', marginLeft: '20px' }}>
-                    <a href="#" style={{ fontSize: 'larger' }} onClick={() => setIsEmployee(true)}>Employee</a>
-                    <a href="#" style={{ fontSize: 'larger' }} onClick={() => setIsEmployee(false)}>HR</a>
-                </nav>
-            </div>
-            <EmployeesTable isEmployee={isEmployee} />
-        </div>
+        <>
+            <DataTable
+                columns={tableColumns}
+                data={employees}
+                pagination
+                fixedHeader
+                fixedHeaderScrollHeight='350px'
+                selectableRows
+                selectableRowsHighlight
+                highlightOnHover
+                subHeader
+                subHeaderComponent={
+                    <>
+                        <div>{isEmployee ? <EmployeeSearch /> : <SearchHr />}</div>
+                        <button className='btn btn-md btn-info' style={{
+                            marginLeft: '630px',
+                            marginRight: '10px',
+                            color: 'white',
+                            padding: '20px 30px',
+                            fontSize: 'large'
+                        }}>+ Add Employee</button>
+                    </>
+                }
+                subHeaderAlign='right'
+            />
+        </>
     )
 }
 
-export default Navbar
+export default EmployeesTable
