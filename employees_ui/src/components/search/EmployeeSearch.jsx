@@ -41,7 +41,7 @@ const EmployeeSearch = ({ setEmployees }) => {
                     alignItems: 'flex-start',
                     marginRight: '5px'
                 }}>
-                    <label htmlFor="employee-id" style={{ marginBottom: '5px' }}>Employee ID</label>
+                    <label htmlFor="employee-id" id='search_text' style={{ marginBottom: '10px' }}>Employee ID</label>
                     <input type="number" name="employee-id" id="employee_id" />
                 </div>
                 <div style={{
@@ -51,7 +51,7 @@ const EmployeeSearch = ({ setEmployees }) => {
                     paddingRight: '10px',
                     alignItems: 'flex-start'
                 }}>
-                    <label htmlFor="employee-name" style={{ marginBottom: '5px' }}>Employee Name</label>
+                    <label htmlFor="employee-name" id='search_text' style={{ marginBottom: '10px' }}>Employee Name</label>
                     <input type="text" name="employee-name" id="employee_name" />
                 </div>
                 <button type='submit'
