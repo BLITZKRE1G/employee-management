@@ -64,7 +64,7 @@ const EmployeesTable = ({ isEmployee }) => {
                 subHeader
                 subHeaderComponent={
                     <>
-                        <div>{isEmployee ? <EmployeeSearch /> : <SearchHr />}</div>
+                        <div>{isEmployee ? <EmployeeSearch setEmployees={setEmployees} /> : <SearchHr />}</div>
                         <button className='btn btn-md btn-info' style={{
                             marginLeft: '630px',
                             marginRight: '10px',
