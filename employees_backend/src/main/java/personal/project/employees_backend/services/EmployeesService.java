@@ -1,6 +1,5 @@
 package personal.project.employees_backend.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import personal.project.employees_backend.model.Employee;
 import personal.project.employees_backend.repository.EmployeeRepository;
@@ -66,5 +65,23 @@ public class EmployeesService {
         }
 
         return deletedEmployee;
+    }
+
+    public List<Employee> employeeSearch(Integer employeeId, String employeeName) {
+
+        if (employeeId != null) {
+
+            return repository.findById(employeeId)
+                    .stream()
+                    .toList();
+        } else if (employeeId == null && employeeName != null) {
+
+            return repository.findAll()
+                    .stream()
+                    .filter(employee -> employee.getName().toLowerCase().contains(employeeName.toLowerCase()))
+                    .toList();
+        } else {
+            return repository.findAll();
+        }
     }
 }
