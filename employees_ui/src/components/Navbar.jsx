@@ -11,7 +11,7 @@ const Navbar = () => {
             <h1
                 style={{
                     textAlign: 'left',
-                    color: "rgb(44, 184, 219)",
+                    color: "rgb(34, 198, 238)",
                     marginTop: "50px",
                     marginLeft: '5px'
                 }}
