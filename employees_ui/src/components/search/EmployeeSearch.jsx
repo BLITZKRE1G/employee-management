@@ -1,21 +1,37 @@
 import axios from 'axios';
-import React from 'react'
 
-const EmployeeSearch = (setEmployees) => {
+const EmployeeSearch = ({ setEmployees }) => {
 
-    const searchEmployee = (event) => {
+    const searchEmployee = async (event) => {
         event.preventDefault();
         console.log("Employee Search");
         const employeeId = document.querySelector('#employee_id').value;
         const employeeName = document.querySelector('#employee_name').value;
 
-        axios.get('')
-            .then(result => {
-                console.log(result.data);
-                setEmployees(result.data);
-            }).catch(error => console.log('Error:', error))
-            .finally(console.log('Searched'))
+        if (employeeId != null) {
+            axios.get(`http://localhost:1080/employees/employee-search?employeeId=${employeeId}`)
+                .then(result => {
+                    console.log(result.data);
+                    setEmployees(result.data);
+                }).catch(error => console.log('Error:', error))
+                .finally(console.log('Searched'))
+        } else if (employeeName != null) {
+            axios.get(`http://localhost:1080/employees/employee-search?employeeName=${employeeName}`)
+                .then(result => {
+                    console.log(result.data);
+                    setEmployees(result.data);
+                }).catch(error => console.log('Error:', error))
+                .finally(console.log('Searched'))
+        } else {
+            axios.get(`http://localhost:1080/employees/employee-search`)
+                .then(result => {
+                    console.log(result.data);
+                    setEmployees(result.data);
+                }).catch(error => console.log('Error:', error))
+                .finally(console.log('Searched'))
+        }
     }
+
     return (
         <div style={{ marginTop: '10px' }}>
             <form action="" method="get" style={{ display: 'flex' }}>
